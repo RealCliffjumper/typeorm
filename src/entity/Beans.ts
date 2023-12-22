@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { BeanStalk } from "./BeanStalk";
 
 @Entity()
@@ -12,6 +12,8 @@ export class Bean{
     @Column()
     beanQty: number
 
-    @OneToMany(() => BeanStalk, (beanStalk) => beanStalk.bean)
+    @OneToMany(() => BeanStalk, (beanStalk) => beanStalk.bean, {
+        cascade:true,
+    })
     beanStalk: BeanStalk
 }

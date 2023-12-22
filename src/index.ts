@@ -2,6 +2,7 @@ import { AppDataSource } from "./data-source"
 import { BeanStalk } from "./entity/BeanStalk"
 import { Bean } from "./entity/Beans"
 import { User } from "./entity/User"
+import { Cart } from "./entity/Cart"
 
 AppDataSource.initialize().then(async () => {
 
@@ -10,8 +11,15 @@ AppDataSource.initialize().then(async () => {
     user.firstName = "Jhon"
     user.lastName = "Doe"
     user.age = 25
+    
+    const cart = new Cart()
+    cart.items = ["Potato", "Whiskey"]
+    user.cart = cart
+
     await AppDataSource.manager.save(user)
     console.log("Saved a new user with id: " + user.id)
+    await AppDataSource.manager.save(cart)
+    console.log("User has a cart with id: " + cart.id)
 
     console.log("Inserting new beans into the database...")
 

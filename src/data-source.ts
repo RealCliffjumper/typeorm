@@ -3,6 +3,7 @@ import { DataSource } from "typeorm"
 import { User } from "./entity/User"
 import { Bean } from "./entity/Beans"
 import { BeanStalk } from "./entity/BeanStalk"
+import { Cart } from "./entity/Cart"
 
 export const AppDataSource = new DataSource({
     type: "postgres",
@@ -11,9 +12,9 @@ export const AppDataSource = new DataSource({
     username: "postgres",
     password: "asdajYR",
     database: "typeorm_db",
-    synchronize: false,
+    synchronize: true,
     logging: false,
-    entities: [User, Bean, BeanStalk],
+    entities: [User, Bean, BeanStalk, Cart],
     migrations: ['src/migration/*.ts'],
     subscribers: [],
 })
